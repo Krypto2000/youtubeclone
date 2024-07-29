@@ -78,16 +78,11 @@ export default function Navbar() {
         </div>
         <div className="flex items-center gap-3">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Superman_logo.svg/1024px-Superman_logo.svg.png"
-            className="w-9 h-9 rounded-full"
-            alt="Superman logo"
-          />
-          
-          <img
-            src="https://yt3.ggpht.com/wgnEbc2Ec2JYkeyzUbiHzDlAFObI2Btwo2YRCEF1aCMBiRc5E_zWy8-URBQS3EMQ1yzzaGFR=s88-c-k-c0x00ffffff-no-rj-mo"
+            src="https://upload.wikimedia.org/wikipedia/commons/3/35/Superman_S_symbol.svg"
             className="w-9 h-9 rounded-full"
             alt="logo"
           />
+          
         </div>
       </div>
     </div>
