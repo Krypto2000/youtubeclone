@@ -1,4 +1,5 @@
 import React from "react";
+import SUP from "./assests/SUPERMANLOGO.png"
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { TiMicrophone } from "react-icons/ti";
 import { BsYoutube, BsCameraVideo, BsBell } from "react-icons/bs";
@@ -78,7 +79,7 @@ export default function Navbar() {
         </div>
         <div className="flex items-center gap-3">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/3/35/Superman_S_symbol.svg"
+            src={SUP}
             className="w-9 h-9 rounded-full"
             alt="logo"
           />

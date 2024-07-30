@@ -12,7 +12,7 @@ export default function SearchCard({ data }: { data: HomePageVideos }) {
         <Link to={`/watch/${data.videoId}`}>
           <img
             src={data.videoThumbnail}
-            className="h-52 w-96"
+            className="h-52 w-96 object-cover"
             alt="thumbnail"
           />
         </Link>
@@ -23,14 +23,12 @@ export default function SearchCard({ data }: { data: HomePageVideos }) {
             {data.videoTitle}
           </a>
         </h3>
-        <div className="text-xs text-grap-400">
+        <div className="text-xs text-gray-400">
           <div>
-            <div>
-              <span className="after:content-['•'] after:mx-1">
-                {data.videoViews} views
-              </span>
-              <span>{data.videoAge}</span>
-            </div>
+            <span className="after:content-['•'] after:mx-1">
+              {data.videoViews} views
+            </span>
+            <span>{data.videoAge}</span>
           </div>
         </div>
         <div className="min-w-fit my-2">
