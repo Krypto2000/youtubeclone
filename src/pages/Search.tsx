@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SearchCard from "../components/SearchCard";
 import Navbar from "../components/Navbar";
@@ -11,10 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { getSearchPageVideos } from "../store/reducers/getSearchPageVideos";
 
 export default function Search() {
+  const [sidebar, setSidebar] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const videos = useAppSelector((state: { youtubeApp: { videos: any; }; }) => state.youtubeApp.videos);
-  const searchTerm = useAppSelector((state: { youtubeApp: { searchTerm: any; }; }) => state.youtubeApp.searchTerm);
+  const videos = useAppSelector((state) => state.youtubeApp.videos);
+  const searchTerm = useAppSelector((state) => state.youtubeApp.searchTerm);
 
   useEffect(() => {
     dispatch(clearVideos());
@@ -24,13 +26,17 @@ export default function Search() {
     }
   }, [dispatch, navigate, searchTerm]);
 
+  const handleToggleSidebar = () => {
+    setSidebar((prevSidebar) => !prevSidebar);
+  };
+
   return (
     <div className="max-h-screen overflow-hidden">
       <div style={{ height: "7.5vh" }}>
-        <Navbar />
+        <Navbar handleToggleSidebar={handleToggleSidebar} />
       </div>
       <div className="flex" style={{ height: "92.5vh" }}>
-        <Sidebar />
+        <Sidebar sidebar={sidebar} handleToggleSidebar={handleToggleSidebar} />
         {videos.length ? (
           <div className="py-8 pl-8 flex flex-col gap-5 w-full">
             <InfiniteScroll

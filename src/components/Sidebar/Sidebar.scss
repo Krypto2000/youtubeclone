@@ -1,0 +1,24 @@
+@import "../../base.scss";
+@media (max-width: $breakpoint-medium){
+    .sidebar{
+        width: 90px;
+        li{
+            justify-content: center;
+        }
+        span{
+            display: none;
+        }
+    }
+    
+}
+@media (max-width: $breakpoint-small){
+.sidebar{
+    display: none;
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 999;
+}
+.sidebar.open{
+    display: block;
+}
+}

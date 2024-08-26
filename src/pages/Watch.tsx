@@ -40,7 +40,9 @@ export default function Watch() {
       {currentPlaying && currentPlaying?.videoId === id && (
         <div className="max-h-screen overflow-hidden">
           <div style={{ height: "7.5vh" }}>
-            <Navbar />
+            <Navbar handleToggleSidebar={function (): void {
+              throw new Error("Function not implemented.");
+            } } />
           </div>
           <div className="flex w-full" style={{ height: "92.5vh" }}>
             <div className="flex gap-y-10 gap-x-5 p-7 mx-20 mr-0 w-full overflow-auto">

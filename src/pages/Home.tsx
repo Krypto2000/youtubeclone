@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./Home.css"
 import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
@@ -24,33 +25,33 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
-      <div className="h-16">
-        <Navbar />
+    <div className="max-h-screen overflow-hidden">
+      <div style={{ height: "7.5vh" }}>
+        <Navbar handleToggleSidebar={function (): void {
+          throw new Error("Function not implemented.");
+        } } />
       </div>
-      <div className="flex flex-1">
-        <div className="hidden md:block md:w-64">
-          <Sidebar />
-        </div>
-        <main className="flex-1 p-4 md:p-8 overflow-y-auto">
-          {videos.length ? (
-            <InfiniteScroll
-              dataLength={videos.length}
-              next={() => dispatch(getHomePageVideos(true))}
-              hasMore={videos.length < 500}
-              loader={<Spinner />}
-              height={650}
-            >
-              <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {videos.map((item: HomePageVideos) => (
-                  <Card data={item} key={item.videoId} />
-                ))}
-              </div>
-            </InfiniteScroll>
-          ) : (
-            <Spinner />
-          )}
-        </main>
+      <div className="flex" style={{ height: "92.5vh" }}>
+        <Sidebar sidebar={false} handleToggleSidebar={function (): void {
+          throw new Error("Function not implemented.");
+        } } />
+        {videos.length ? (
+          <InfiniteScroll
+            dataLength={videos.length}
+            next={() => dispatch(getHomePageVideos(true))}
+            hasMore={videos.length < 500}
+            loader={<Spinner />}
+            height={650}
+          >
+            <div className="grid gap-y-14 gap-x-8 grid-cols-4 p-8">
+              {videos.map((item: HomePageVideos) => {
+                return <Card data={item} key={item.videoId} />;
+              })}
+            </div>
+          </InfiniteScroll>
+        ) : (
+          <Spinner />
+        )}
       </div>
     </div>
   );

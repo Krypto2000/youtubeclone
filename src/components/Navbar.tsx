@@ -1,5 +1,5 @@
 import React from "react";
-import SUP from "./assests/SUPERMANLOGO.png"
+import SUP from "../components/assests/SUPERMANLOGO.png";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { TiMicrophone } from "react-icons/ti";
 import { BsYoutube, BsCameraVideo, BsBell } from "react-icons/bs";
@@ -10,11 +10,18 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { changeSearchTerm, clearSearchTerm, clearVideos } from "../store";
 import { getSearchPageVideos } from "../store/reducers/getSearchPageVideos";
 
-export default function Navbar() {
+interface NavbarProps {
+  handleToggleSidebar: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ handleToggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const searchTerm = useAppSelector((state: { youtubeApp: { searchTerm: any; }; }) => state.youtubeApp.searchTerm);
+  const searchTerm = useAppSelector(
+    (state: { youtubeApp: { searchTerm: string } }) => state.youtubeApp.searchTerm
+  );
+
   const handleSearch = () => {
     if (location.pathname !== "/search") navigate("/search");
     else {
@@ -27,7 +34,7 @@ export default function Navbar() {
     <div className="flex justify-between items-center px-14 h-14 bg-[#212121] opacity-95 sticky top-0 z-50">
       <div className="flex gap-8 items-center text-2xl">
         <div>
-          <GiHamburgerMenu />
+          <GiHamburgerMenu onClick={handleToggleSidebar} />
         </div>
         <Link to="/">
           <div className="flex gap-1 items-center justify-center">
@@ -78,14 +85,11 @@ export default function Navbar() {
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <img
-            src={SUP}
-            className="w-9 h-9 rounded-full"
-            alt="logo"
-          />
-          
+          <img src={SUP} className="w-9 h-9 rounded-full" alt="logo" />
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;

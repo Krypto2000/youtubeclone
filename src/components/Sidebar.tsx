@@ -1,4 +1,5 @@
 import React from "react";
+import "../components/Sidebar/Sidebar.scss";
 import {
   MdHomeFilled,
   MdOutlineSlowMotionVideo,
@@ -18,7 +19,12 @@ import { TbMusic, TbDeviceGamepad2 } from "react-icons/tb";
 import { FaRegCompass } from "react-icons/fa";
 import { GiFilmStrip } from "react-icons/gi";
 
-export default function Sidebar() {
+interface SidebarProps {
+  sidebar: boolean;
+  handleToggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ sidebar, handleToggleSidebar }) => {
   const mainLinks = [
     {
       icon: <MdHomeFilled className="text-xl" />,
@@ -119,7 +125,12 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="w-64 bg-[#212121] pr-5 overflow-auto pb-8">
+    <div
+      className={`w-64 bg-[#212121] pr-5 overflow-auto pb-8 ${
+        sidebar ? "sidebar open" : "sidebar"
+      }`}
+      onClick={() => handleToggleSidebar()}
+    >
       <ul className="flex flex-col border-b-2 border-gray-700">
         {mainLinks.map(({ icon, name }) => {
           return (
@@ -190,4 +201,6 @@ export default function Sidebar() {
       </p>
     </div>
   );
-}
+};
+
+export default Sidebar;
